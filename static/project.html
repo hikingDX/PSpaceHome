@@ -16,25 +16,65 @@
         <div>
             <!--向左对齐-->
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#">项目</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-weight: bold">
+                        项目
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_market_icon.png">
+                                所有项目
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_qh_market_icon.png">
+                                国内券商
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hs_market_icon.png">
+                                自营项目
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="us_market_icon.png">
+                                国内期货
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="active"><a href="#">动态</a></li>
                 <li><a href="#">团队</a></li>
                 <li><a href="#">版本说明书</a></li>
             </ul>
             <!--向右对齐-->
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#" style="font-weight: bold">消息 <span class="badge"
-                                                                            style="background-color: #ec7063">50</span></a>
+                <li class="">
+                    <a href="#" style="font-weight: bold">消息
+                        <span class="badge" style="background-color: #ec7063">50</span>
+                    </a>
                 </li>
                 <li class="dropdown">
-
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                        style="font-weight: bold;padding: 5px">
                         <img class="img-circle" style="width:40px;height: 100%;" src="pic.jpg">
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">jmeter</a></li>
+
                         <li><a href="#">EJB</a></li>
                         <li><a href="#">Jasper Report</a></li>
                         <li class="divider"></li>
@@ -61,78 +101,114 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">分类</div>
+                <div class="panel-heading">国内券商</div>
                 <ul class="list-group">
                     <a href="#" class="list-group-item">
-                        <h5 class="list-group-item-heading ">
+                        <h4 class="list-group-item-heading ">
                             <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
-                            所有项目
-                            <span class="label label-success" style="margin-left: 20px">25个</span>
-                        </h5>
+                            东方香港
+                        </h4>
                     </a>
                     <a href="#" class="list-group-item active" style="background-color: #3498db;border: none">
-                        <h5 class="list-group-item-heading ">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_qh_market_icon.png">
+                        <h4 class="list-group-item-heading ">
+                            <img class="img-rounded" style="width:25px;height: 100%;" src="icon1.png">
                             国内券商
-                            <span class="label label-success" style="margin-left: 20px">25个</span>
-                        </h5>
+                        </h4>
                     </a>
                     <a href="#" class="list-group-item">
-                        <h5 class="list-group-item-heading ">
+                        <h4 class="list-group-item-heading ">
                             <img class="img-rounded" style="width:25px;height: 100%;" src="hs_market_icon.png">
                             自营项目
-                            <span class="label label-success" style="margin-left: 20px">25个</span>
-                        </h5>
+                        </h4>
                     </a>
                     <a href="#" class="list-group-item">
-                        <h5 class="list-group-item-heading ">
+                        <h4 class="list-group-item-heading ">
                             <img class="img-rounded" style="width:25px;height: 100%;" src="us_market_icon.png">
                             国内期货
-                            <span class="label label-success" style="margin-left: 20px">25个</span>
-                        </h5>
+                        </h4>
                     </a>
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">国内券商</div>
-                <ul class="list-group">
-                    <a class="list-group-item" href="project_detail.html">
-                        <h3 class="list-group-item-heading">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
-                            东方香港
-                        </h3>
-                        <h5 class="list-group-item-text">
-                            <span class="label label-info">bug:5个</span>
-                            <span class="label label-danger">测试用例：3个</span>
-                            <span class="label label-warning">版本说明书:5个</span>
-                        </h5>
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">测试用例</a>
+                </li>
+                <li><a href="#ios" data-toggle="tab">BUG</a></li>
+                <li class="dropdown">
+                    <a href="#" id="myTabDrop1" class="dropdown-toggle"
+                       data-toggle="dropdown">版本说明书 <b class="caret"></b>
                     </a>
-                    <a class="list-group-item" href="#">
-                        <h3 class="list-group-item-heading">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
-                            东方香港
-                        </h3>
-                        <h5 class="list-group-item-text">
-                            <span class="label label-info">bug:5个</span>
-                            <span class="label label-danger">测试用例：3个</span>
-                            <span class="label label-warning">版本说明书:5个</span>
-                        </h5>
-                    </a>
-                    <a class="list-group-item" href="#">
-                        <h3 class="list-group-item-heading">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
-                            东方香港
-                        </h3>
-                        <h5 class="list-group-item-text">
-                            <span class="label label-info">bug:5个</span>
-                            <span class="label label-danger">测试用例：3个</span>
-                            <span class="label label-warning">版本说明书:5个</span>
-                        </h5>
-                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#jmeter" tabindex="-1" data-toggle="tab">
+                            jmeter</a>
+                        </li>
+                        <li><a href="#ejb" tabindex="-1" data-toggle="tab">
+                            ejb</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content" style="">
+                <div class="tab-pane fade in active" id="home">
 
-                </ul>
+                    <ul class="breadcrumb">
+                        <li><a href="#">全部</a></li>
+                        <li><a href="#">id1007:点击登录交易页面</a></li>
+                        <li class="active">十一月</li>
+                    </ul>
+
+                    <div class="panel panel-default">
+                        <ul class="list-group">
+                            <a class="list-group-item" href="project_detail.html">
+                                <h3 class="list-group-item-heading">
+                                    <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                                    东方香港
+                                </h3>
+                                <h5 class="list-group-item-text">
+                                    <span class="label label-info">bug:5个</span>
+                                    <span class="label label-danger">测试用例：3个</span>
+                                    <span class="label label-warning">版本说明书:5个</span>
+                                </h5>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <h3 class="list-group-item-heading">
+                                    <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                                    东方香港
+                                </h3>
+                                <h5 class="list-group-item-text">
+                                    <span class="label label-info">bug:5个</span>
+                                    <span class="label label-danger">测试用例：3个</span>
+                                    <span class="label label-warning">版本说明书:5个</span>
+                                </h5>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <h3 class="list-group-item-heading">
+                                    <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                                    东方香港
+                                </h3>
+                                <h5 class="list-group-item-text">
+                                    <span class="label label-info">bug:5个</span>
+                                    <span class="label label-danger">测试用例：3个</span>
+                                    <span class="label label-warning">版本说明书:5个</span>
+                                </h5>
+                            </a>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ios">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+                <div class="tab-pane fade" id="jmeter">
+                    <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+                </div>
+                <div class="tab-pane fade" id="ejb">
+                    <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+                    </p>
+                </div>
             </div>
         </div>
     </div>
