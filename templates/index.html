@@ -103,7 +103,7 @@
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">国内券商</div>
-                <ul class="list-group">
+                <ul class="list-group" id="projectul">
                     {% for item in project_list %}
 
                         <a href="#" class="list-group-item">
@@ -471,32 +471,54 @@
 // 字典 dict
 $('#project_all').click(function () {
     $.get('/testcase/trader/0', function (data) {
+        $('#projectul').empty()
         project_list = data.message;
-        for (i = 0; i < project_list.length; i++) {
-
-            "<a href = \"#\" class= \"list-group-item\" > < h4 class= \"list-group-item-heading \" > < img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
-            + item.name + "< /h4>< /a>"
+        var str = "";
+        for (var i = 0; i < project_list.length; i++) {
+            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
+                + project_list[i].name + "</h4></a>"
         }
-        location.reload(true);
+        $('#projectul').append(str)
     });
 });
 $('#project_trader').click(function () {
     $.get('/testcase/trader/1', function (data) {
+        $('#projectul').empty()
         project_list = data.message;
-        location.reload(true);
+        var str = "";
+        for (var i = 0; i < project_list.length; i++) {
+            logostr = project_list[i].logo + ".png";
+            {#logo = {% static logostr %};#}
+            logo = "/static/"+logostr;
+            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"" + logo + "\" >"
+                + project_list[i].name + "</h4></a>"
+        }
+        $('#projectul').append(str)
     });
 });
 $('#project_self').click(function () {
     $.get('/testcase/trader/2', function (data) {
+        $('#projectul').empty()
         project_list = data.message;
-        location.reload(true);
+        var str = "";
+        for (var i = 0; i < project_list.length; i++) {
+            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
+                + project_list[i].name + "</h4></a>"
+        }
+        $('#projectul').append(str)
     });
 });
 $('#project_option').click(function () {
     $.get('/testcase/trader/3', function (data) {
+        $('#projectul').empty()
         project_list = data.message;
+        var str = "";
+        for (var i = 0; i < project_list.length; i++) {
+            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
+                + project_list[i].name + "</h4></a>"
+        }
+        $('#projectul').append(str)
         console.log(data);
-        location.reload(true);
     });
 });
 </script>
