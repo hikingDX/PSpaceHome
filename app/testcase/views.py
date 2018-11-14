@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
-from app.testcase.models import TestCaseDocument, TestCaseFunction
+from app.testcase.models import TestCaseDocument, TestCaseFunction, Trader
 from utils.mixin import LoginRequiredMixin
 
 
@@ -41,11 +41,15 @@ class IndexView(LoginRequiredMixin, View):
 
 
 class TraderView(LoginRequiredMixin, View):
-    def post(self, request):
-        return JsonResponse({'res': 5, 'total_count': 12, 'message': '添加成功'})
-
-    def get(self, request):
-        return JsonResponse({'res': 5, 'total_count': 12, 'message': '添加成功'})
+    def get(self, request, type):
+        if type == '0':
+            data = Trader.objects.all()
+        else:
+            data = Trader.objects.filter(type=type).all()
+        json_data = []
+        for item in data:
+            json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        return JsonResponse({'code': 100, 'message': json_data})
 
 
 class TestCaseTempletView(LoginRequiredMixin, View):

@@ -24,7 +24,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <li id="project_all">
                             <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
                                               src="hk_market_icon.png">
                                 所有项目
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li id="guonei">
+                        <li id="project_trader">
                             <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
                                               src="hk_qh_market_icon.png">
                                 国内券商
@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li>
+                        <li id="project_self">
                             <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
                                               src="hs_market_icon.png">
                                 自营项目
@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li>
+                        <li id="project_option">
                             <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
                                               src="us_market_icon.png">
                                 国内期货
@@ -104,30 +104,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">国内券商</div>
                 <ul class="list-group">
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading ">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
-                            东方香港
-                        </h4>
-                    </a>
-                    <a href="#" class="list-group-item active" style="background-color: #3498db;border: none">
-                        <h4 class="list-group-item-heading ">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="icon1.png">
-                            国内券商
-                        </h4>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading ">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="hs_market_icon.png">
-                            自营项目
-                        </h4>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading ">
-                            <img class="img-rounded" style="width:25px;height: 100%;" src="us_market_icon.png">
-                            国内期货
-                        </h4>
-                    </a>
+                    {% for item in project_list %}
+
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading ">
+                                <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                                {{ item.name }}
+                            </h4>
+                        </a>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -483,15 +468,37 @@
 <script>
 
 
-    // 字典 dict
-    $('#guonei').click(function () {
-        {#csrf =  'kg7mi18j9e#8)or$$ce5!^q%-)7trnin2pt&%__)h+9^)%!f&s'#}
-        {#params = {'csrfmiddlewaretoken': csrf}#}
-        $.get('/testcase/trader', function (data) {
-            console.log(data)
-            alert(data)
-        });
+// 字典 dict
+$('#project_all').click(function () {
+    $.get('/testcase/trader/0', function (data) {
+        project_list = data.message;
+        for (i = 0; i < project_list.length; i++) {
+
+            "<a href = \"#\" class= \"list-group-item\" > < h4 class= \"list-group-item-heading \" > < img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
+            + item.name + "< /h4>< /a>"
+        }
+        location.reload(true);
     });
+});
+$('#project_trader').click(function () {
+    $.get('/testcase/trader/1', function (data) {
+        project_list = data.message;
+        location.reload(true);
+    });
+});
+$('#project_self').click(function () {
+    $.get('/testcase/trader/2', function (data) {
+        project_list = data.message;
+        location.reload(true);
+    });
+});
+$('#project_option').click(function () {
+    $.get('/testcase/trader/3', function (data) {
+        project_list = data.message;
+        console.log(data);
+        location.reload(true);
+    });
+});
 </script>
 </body>
 </html>
