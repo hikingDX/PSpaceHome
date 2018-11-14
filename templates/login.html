@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乾隆移动工作站</title>
+    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .form-sigin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body style="background-color:#ecf0f1">
+<div class="container">
+    <form class="form-sigin" role="form" method="post">
+        {% csrf_token %}
+        <h3 class="text-center">乾隆移动工作站</h3>
+        <input value="{{ username }}" name="username" type="text" class="form-control" placeholder="账号" required
+               autofocus>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        <label class="checkbox">
+            <input type="checkbox" name="remember" {{ checked }}>记住我
+        </label>
+        {{ errmsg }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+
+</div>
+
+</body>
+</html>

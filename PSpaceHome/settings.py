@@ -125,3 +125,20 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # django 认证系统使用的模型类，替换auth_user
 AUTH_USER_MODEL = 'user.User'
+
+# Django的缓存配置
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+# 配置session存储
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+# 配置登录url地址
+LOGIN_URL = '/user/login'

@@ -11,10 +11,12 @@ CASE_RESULT_CHOICES = (
     (1, "success"),  # 测试成功
     (2, "fail")  # 测试失败
 )
-BROKER_CHOICES = (
-    (0, "null"),
-    (106, "东方香港"),
-    (101, "银河")
+
+Trader_TYPE_CHOICES = (
+    (0, "全部"),
+    (1, "国内券商"),
+    (2, "自营项目"),
+    (3, "国内期货")
 )
 
 

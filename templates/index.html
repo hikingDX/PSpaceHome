@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>乾隆移动工作站</title>
+    <link href="{% static  'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static  'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body style="background-color:#ecf0f1">
+<nav class="navbar navbar-default" role="navigation" style="border-style:none;border-radius:0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color: white;font-weight: bold">乾隆移动工作站</a>
+        </div>
+        <div>
+            <!--向左对齐-->
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-weight: bold">
+                        项目
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_market_icon.png">
+                                所有项目
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="guonei">
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_qh_market_icon.png">
+                                国内券商
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hs_market_icon.png">
+                                自营项目
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="us_market_icon.png">
+                                国内期货
+                                <span class="label label-success" style="margin-left: 20px">25个</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active"><a href="#">动态</a></li>
+                <li><a href="#">团队</a></li>
+                <li><a href="#">版本说明书</a></li>
+            </ul>
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="#" style="font-weight: bold">消息
+                        <span class="badge" style="background-color: #ec7063">50</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-weight: bold;padding: 5px">
+                        <img class="img-circle" style="width:40px;height: 100%;" src="pic.jpg">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="#">EJB</a></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="搜索">
+                    <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">国内券商</div>
+                <ul class="list-group">
+                    <a href="#" class="list-group-item">
+                        <h4 class="list-group-item-heading ">
+                            <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                            东方香港
+                        </h4>
+                    </a>
+                    <a href="#" class="list-group-item active" style="background-color: #3498db;border: none">
+                        <h4 class="list-group-item-heading ">
+                            <img class="img-rounded" style="width:25px;height: 100%;" src="icon1.png">
+                            国内券商
+                        </h4>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <h4 class="list-group-item-heading ">
+                            <img class="img-rounded" style="width:25px;height: 100%;" src="hs_market_icon.png">
+                            自营项目
+                        </h4>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <h4 class="list-group-item-heading ">
+                            <img class="img-rounded" style="width:25px;height: 100%;" src="us_market_icon.png">
+                            国内期货
+                        </h4>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-10">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#home" data-toggle="tab">测试用例</a></li>
+                        <li><a href="#ios" data-toggle="tab">BUG</a></li>
+                        <li><a href="#demo" data-toggle="tab">版本说明书</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">全部
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">全部</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Android</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">iOS</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="myTabContent" class="tab-content" style="">
+                <div class="tab-pane fade in active" id="home">
+                    <ul class="list-group">
+                        <div class="list-group-item" style="font-size: 16px">
+                            <button type="button" class="btn btn-warning btn-xs">Android</button>
+                            <button type="button" class="btn btn-danger btn-xs">bug:8个</button>
+                            <button type="button" class="btn btn-info btn-xs">2018/11/2</button>
+                            <a href="#">
+                                <span style="font-weight: bold">[ID1009]</span>
+                                交易页面，持仓表格左右滑动查看时，整体页面未固定，会上下晃动,记录只有两条时，左划都无响应。
+                            </a>
+
+                        </div>
+                        <div class="list-group-item" style="font-size: 16px">
+                            <button type="button" class="btn btn-success btn-xs">iOS</button>
+                            <button type="button" class="btn btn-danger btn-xs">bug:12个</button>
+                            <button type="button" class="btn btn-info btn-xs">2018/11/2</button>
+                            <a href="#">
+                                <span style="font-weight: bold">[ID1007]</span>
+                                登录解锁测试
+                            </a>
+
+                        </div>
+
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="ios">
+                    <ul class="list-group">
+                        <div class="list-group-item" style="font-size: 16px">
+                            <button type="button" class="btn btn-warning btn-xs">Android</button>
+                            <button type="button" class="btn btn-info btn-xs">2018/11/2</button>
+                            <a href="#">
+                                <span style="font-weight: bold">[ID1009]</span>
+                                交易页面，持仓表格左右滑动查看时，整体页面未固定，会上下晃动,记录只有两条时，左划都无响应。
+                            </a>
+
+                        </div>
+                        <div class="list-group-item" style="font-size: 16px">
+                            <button type="button" class="btn btn-success btn-xs">iOS</button>
+                            <button type="button" class="btn btn-info btn-xs">2018/11/2</button>
+                            <a href="#">
+                                <span style="font-weight: bold">[ID1007]</span>
+                                登录解锁测试
+                            </a>
+
+                        </div>
+
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="demo">
+                    <ul class="list-group">
+                        <a href="hello.html" class="list-group-item">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th class="info">提交版本</th>
+                                    <td class="active">V3.14(20181101-1)</td>
+                                    <th class="info">券商代码</th>
+                                    <td class="active">85</td>
+                                    <th class="info">提交日期</th>
+                                    <td class="active">2018/11/1</td>
+                                </tr>
+                                <tr>
+                                    <th class="info"> bundleId（包名）</th>
+                                    <td class="active">com.qianlong.huabao</td>
+                                    <th class="info">打包名称</th>
+                                    <td class="active">华宝期权_测试V3.14(20181101-1).ipa</td>
+                                    <th class="info">项目描述</th>
+                                    <td class="active">华宝期权宝Ios</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">认证服务器地址</th>
+                                    <td class="active">ip1=183.134.101.116:21018</td>
+                                    <th class="info"> 提交包文件地址</th>
+                                    <td class="active">http://42.51.11.33:8080/svn/qqbipa/</td>
+                                    <th class="info">VersionCode(安卓适用)</th>
+                                    <td class="active">12233</td>
+                                </tr>
+                                <tr>
+                                    <th class="info">编号</th>
+                                    <th class="info">问 题 描 述</th>
+                                    <th class="info">等 级</th>
+                                    <th class="info">发生原因 和 修改方案</th>
+                                    <th class="info">自测结果</th>
+                                    <th class="info">开发人员</th>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">修改影响 升级影响</th>
+                                    <td class="active"> 期权、股票下单，成交、委托查询</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                        <div class="list-group-item">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th class="info">提交版本</th>
+                                    <td class="active">V3.14(20181101-1)</td>
+                                    <th class="info">券商代码</th>
+                                    <td class="active">85</td>
+                                    <th class="info">提交日期</th>
+                                    <td class="active">2018/11/1</td>
+                                </tr>
+                                <tr>
+                                    <th class="info"> bundleId（包名）</th>
+                                    <td class="active">com.qianlong.huabao</td>
+                                    <th class="info">打包名称</th>
+                                    <td class="active">华宝期权_测试V3.14(20181101-1).ipa</td>
+                                    <th class="info">项目描述</th>
+                                    <td class="active">华宝期权宝Ios</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">认证服务器地址</th>
+                                    <td class="active">ip1=183.134.101.116:21018</td>
+                                    <th class="info"> 提交包文件地址</th>
+                                    <td class="active">http://42.51.11.33:8080/svn/qqbipa/</td>
+                                    <th class="info">VersionCode(安卓适用)</th>
+                                    <td class="active">12233</td>
+                                </tr>
+                                <tr>
+                                    <th class="info">编号</th>
+                                    <th class="info">问 题 描 述</th>
+                                    <th class="info">等 级</th>
+                                    <th class="info">发生原因 和 修改方案</th>
+                                    <th class="info">自测结果</th>
+                                    <th class="info">开发人员</th>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">修改影响 升级影响</th>
+                                    <td class="active"> 期权、股票下单，成交、委托查询</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="list-group-item">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th class="info">提交版本</th>
+                                    <td class="active">V3.14(20181101-1)</td>
+                                    <th class="info">券商代码</th>
+                                    <td class="active">85</td>
+                                    <th class="info">提交日期</th>
+                                    <td class="active">2018/11/1</td>
+                                </tr>
+                                <tr>
+                                    <th class="info"> bundleId（包名）</th>
+                                    <td class="active">com.qianlong.huabao</td>
+                                    <th class="info">打包名称</th>
+                                    <td class="active">华宝期权_测试V3.14(20181101-1).ipa</td>
+                                    <th class="info">项目描述</th>
+                                    <td class="active">华宝期权宝Ios</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">认证服务器地址</th>
+                                    <td class="active">ip1=183.134.101.116:21018</td>
+                                    <th class="info"> 提交包文件地址</th>
+                                    <td class="active">http://42.51.11.33:8080/svn/qqbipa/</td>
+                                    <th class="info">VersionCode(安卓适用)</th>
+                                    <td class="active">12233</td>
+                                </tr>
+                                <tr>
+                                    <th class="info">编号</th>
+                                    <th class="info">问 题 描 述</th>
+                                    <th class="info">等 级</th>
+                                    <th class="info">发生原因 和 修改方案</th>
+                                    <th class="info">自测结果</th>
+                                    <th class="info">开发人员</th>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">修改影响 升级影响</th>
+                                    <td class="active"> 期权、股票下单，成交、委托查询</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="list-group-item">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th class="info">提交版本</th>
+                                    <td class="active">V3.14(20181101-1)</td>
+                                    <th class="info">券商代码</th>
+                                    <td class="active">85</td>
+                                    <th class="info">提交日期</th>
+                                    <td class="active">2018/11/1</td>
+                                </tr>
+                                <tr>
+                                    <th class="info"> bundleId（包名）</th>
+                                    <td class="active">com.qianlong.huabao</td>
+                                    <th class="info">打包名称</th>
+                                    <td class="active">华宝期权_测试V3.14(20181101-1).ipa</td>
+                                    <th class="info">项目描述</th>
+                                    <td class="active">华宝期权宝Ios</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">认证服务器地址</th>
+                                    <td class="active">ip1=183.134.101.116:21018</td>
+                                    <th class="info"> 提交包文件地址</th>
+                                    <td class="active">http://42.51.11.33:8080/svn/qqbipa/</td>
+                                    <th class="info">VersionCode(安卓适用)</th>
+                                    <td class="active">12233</td>
+                                </tr>
+                                <tr>
+                                    <th class="info">编号</th>
+                                    <th class="info">问 题 描 述</th>
+                                    <th class="info">等 级</th>
+                                    <th class="info">发生原因 和 修改方案</th>
+                                    <th class="info">自测结果</th>
+                                    <th class="info">开发人员</th>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>交易-查询-历史成交查询页面，列表里后资金余额未显示。</td>
+                                    <td>2-中</td>
+                                    <td> 原因：配置的210字段服务器没有返回值
+                                        解决：字段210改为1353
+                                    </td>
+                                    <td> 自测通过</td>
+                                    <td>海境</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="info">修改影响 升级影响</th>
+                                    <td class="active"> 期权、股票下单，成交、委托查询</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+</footer>
+<script>
+
+
+    // 字典 dict
+    $('#guonei').click(function () {
+        {#csrf =  'kg7mi18j9e#8)or$$ce5!^q%-)7trnin2pt&%__)h+9^)%!f&s'#}
+        {#params = {'csrfmiddlewaretoken': csrf}#}
+        $.get('/testcase/trader', function (data) {
+            console.log(data)
+            alert(data)
+        });
+    });
+</script>
+</body>
+</html>
