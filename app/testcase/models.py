@@ -86,7 +86,7 @@ class TestCaseImage(BaseModel):
 
     class Meta:
         db_table = 'ps_testcase_img'
-        verbose_name = '测试用例实例Bug'
+        verbose_name = '测试用例实例图片'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -101,5 +101,8 @@ class Trader(BaseModel):
 
     class Meta:
         db_table = 'ps_trader'
-        verbose_name = '测试用例实例Bug'
+        verbose_name = '券商'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
