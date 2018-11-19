@@ -76,8 +76,14 @@ class TestCaseListView(LoginRequiredMixin, View):
         return JsonResponse({'code': 100, 'message': jsondata})
 
 
+class TestCaseDetailView(LoginRequiredMixin, View):
+    def get(self, request, test_case_id):
+        return render(request, 'testcase_detail.html')
+
+
 class TestCaseView(LoginRequiredMixin, View):
     pass
+
 
 class TestCaseBugListView(LoginRequiredMixin, View):
     pass
