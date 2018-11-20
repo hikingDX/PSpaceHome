@@ -24,30 +24,30 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li id="project_all" onclick="click_select_project(0,'所有项目')">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hk_market_icon.png">
+                        <li id="project_all">
+                            <a href="/testcase/trader/0"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hk_market_icon.png">
                                 所有项目
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li id="project_trader" onclick="click_select_project(1,'国内券商')">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hk_qh_market_icon.png">
+                        <li id="project_trader">
+                            <a href="/testcase/trader/1"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hk_qh_market_icon.png">
                                 国内券商
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li id="project_self" onclick="click_select_project(2,'自营项目')">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hs_market_icon.png">
+                        <li id="project_self">
+                            <a href="/testcase/trader/2"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hs_market_icon.png">
                                 自营项目
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li id="project_option" onclick="click_select_project(3,'国内期货')">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="us_market_icon.png">
+                        <li id="project_option">
+                            <a href="/testcase/trader/3"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="us_market_icon.png">
                                 国内期货
                             </a>
                         </li>
@@ -99,9 +99,20 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading" id="trader_list_title">国内券商</div>
+                <div class="panel-heading" id="trader_list_title">{{ trader_type }}</div>
 
                 <ul class="list-group" id="projectul">
+                    {% for item in context.datas %}
+
+                        <a href="#" class="list-group-item" onclick="get_testcase({{ item.code }})"> +
+                            <h4 class="list-group-item-heading">
+                                <img class="img-rounded" style="width:25px;height: 100%;"
+                                     src="{% static item.logo %} ">
+                                {{ item.name }}
+                            </h4>
+                        </a>
+                    {% endfor %}
+
                 </ul>
             </div>
         </div>
@@ -447,7 +458,8 @@
 </footer>
 <script>
     //进入页面请求全部项目
-    click_select_project(0, "所有项目");
+    {#click_select_project(0, "所有项目");#}
+    {#get_testcase({{ context.datas[0].code}});#}
 
     function click_select_project(porject_id, project_name) {
         $.get('/testcase/trader/' + porject_id, function (data) {

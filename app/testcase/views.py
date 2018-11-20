@@ -42,14 +42,24 @@ class IndexView(LoginRequiredMixin, View):
 
 class TraderView(LoginRequiredMixin, View):
     def get(self, request, type):
+        # if type == '0':
+        #     data = Trader.objects.all()
+        # else:
+        #     data = Trader.objects.filter(type=type).all()
+        # json_data = []
+        # for item in data:
+        #     json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        # return JsonResponse({'code': 100, 'message': json_data})
         if type == '0':
             data = Trader.objects.all()
         else:
             data = Trader.objects.filter(type=type).all()
-        json_data = []
+        datas = []
         for item in data:
-            json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
-        return JsonResponse({'code': 100, 'message': json_data})
+            datas.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        context = {'datas': datas}
+        print(context)
+        return render(request, 'index.html', context)
 
 
 class TestCaseTempletView(LoginRequiredMixin, View):
@@ -90,4 +100,5 @@ class TestCaseBugListView(LoginRequiredMixin, View):
 
 
 class TestCaseBugView(LoginRequiredMixin, View):
-    pass
+    def get(self, request, bug_id):
+        return render(request, 'testcase_bug.html')

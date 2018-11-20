@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
+from utils.mixin import LoginRequiredMixin
+
 
 class LoginView(View):
     def get(self, request):
@@ -56,3 +58,8 @@ class LogoutView(View):
         logout(request)
         # 跳转到首页
         return redirect(reverse('testcase:index'))
+
+
+class TeamView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'team.html')
