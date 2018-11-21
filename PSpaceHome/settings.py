@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'app.user',
     'app.versioninfo',
     'app.testcase',
-
+    'app.chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,8 +70,18 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'PSpaceHome.wsgi.application'
+
+# Channels
+ASGI_APPLICATION = 'PSpaceHome.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

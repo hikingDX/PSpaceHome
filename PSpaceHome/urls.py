@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('^user/', include('app.user.urls', namespace='user')),
     re_path('^testcase/', include('app.testcase.urls', namespace='testcase')),
+    re_path(r'^chat/', include('app.chat.urls', namespace='chat')),
 ]

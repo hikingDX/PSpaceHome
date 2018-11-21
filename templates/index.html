@@ -61,7 +61,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="#" style="font-weight: bold">消息
-                        <span class="badge" style="background-color: #ec7063">50</span>
+                        <span id="mybadge" class="badge" style="background-color: #ec7063">1</span>
                     </a>
                 </li>
                 <li class="dropdown">
@@ -457,6 +457,23 @@
     </div>
 </footer>
 <script>
+
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/hiking/');
+
+    chatSocket.onmessage = function (e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        var old = parseInt($('#mybadge').text());
+        $('#mybadge').text(parseInt(message) + old);
+    };
+
+    chatSocket.onclose = function (e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+
     //进入页面请求全部项目
     {#click_select_project(0, "所有项目");#}
     {#get_testcase({{ context.datas[0].code}});#}
