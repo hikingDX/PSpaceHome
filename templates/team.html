@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>乾隆移动工作站</title>
+    <link href="{% static  'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static  'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body style="background-color:#ecf0f1" data-spy="scroll" data-target="#myScrollspy">
+<nav class="navbar navbar-default" role="navigation" style="border-style:none;border-radius:0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color: white;font-weight: bold">乾隆移动工作站</a>
+        </div>
+        <div>
+            <!--向左对齐-->
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-weight: bold">
+                        项目
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li id="project_all" onclick="click_select_project(0,'所有项目')">
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_market_icon.png">
+                                所有项目
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="project_trader" onclick="click_select_project(1,'国内券商')">
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hk_qh_market_icon.png">
+                                国内券商
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="project_self" onclick="click_select_project(2,'自营项目')">
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="hs_market_icon.png">
+                                自营项目
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="project_option" onclick="click_select_project(3,'国内期货')">
+                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                              src="us_market_icon.png">
+                                国内期货
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">动态</a></li>
+                <li><a href="#">团队</a></li>
+                <li><a href="#">版本说明书</a></li>
+            </ul>
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="#" style="font-weight: bold">消息
+                        <span class="badge" style="background-color: #ec7063">50</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-weight: bold;padding: 5px">
+                        <img class="img-circle" style="width:40px;height: 100%;"
+                             src="/static/testcase/{{ user.portrait }}">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a>{{ user.nickname }}</a></li>
+                        <li><a>{{ user.positon }}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">个人中心</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/user/logout">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="搜索">
+                    <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <ul class="list-group">
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" style="font-size: 16px">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="/static/icon1.png" class="img-rounded  center-block"
+                         style="width: 60px;height: 60px">
+                </div>
+                <div class="col-md-11">
+                    <h4><strong>海境</strong>
+                        <small> 安卓开发</small>
+                    </h4>
+                    <span class="label label-primary">提交20个用例代码</span>
+                    <span class="label label-info">发现19个Bug</span>
+                    <span class="label label-success">提交20个版本说明书</span>
+                    <hr>
+                    <p><strong>个性签名：</strong>“感觉还不错！”</p>
+                </div>
+            </div>
+        </div>
+    </ul>
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+</footer>
+<script>
+</script>
+</body>
+</html>

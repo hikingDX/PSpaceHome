@@ -17,7 +17,7 @@
         <div>
             <!--向左对齐-->
             <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                        style="font-weight: bold">
                         项目
@@ -25,39 +25,35 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li id="project_all">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hk_market_icon.png">
+                            <a href="/testcase/trader/0"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hk_market_icon.png">
                                 所有项目
-                                <span class="label label-success" style="margin-left: 20px">25个</span>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li id="project_trader">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hk_qh_market_icon.png">
+                            <a href="/testcase/trader/1"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hk_qh_market_icon.png">
                                 国内券商
-                                <span class="label label-success" style="margin-left: 20px">25个</span>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li id="project_self">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="hs_market_icon.png">
+                            <a href="/testcase/trader/2"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="hs_market_icon.png">
                                 自营项目
-                                <span class="label label-success" style="margin-left: 20px">25个</span>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li id="project_option">
-                            <a href="#"> <img class="img-rounded" style="width:25px;height: 100%;"
-                                              src="us_market_icon.png">
+                            <a href="/testcase/trader/3"> <img class="img-rounded" style="width:25px;height: 100%;"
+                                                               src="us_market_icon.png">
                                 国内期货
-                                <span class="label label-success" style="margin-left: 20px">25个</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="active"><a href="#">动态</a></li>
+                <li><a href="#">动态</a></li>
                 <li><a href="#">团队</a></li>
                 <li><a href="#">版本说明书</a></li>
             </ul>
@@ -71,17 +67,18 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                        style="font-weight: bold;padding: 5px">
-                        <img class="img-circle" style="width:40px;height: 100%;" src="pic.jpg">
+                        <img class="img-circle" style="width:40px;height: 100%;"
+                             src="/static/testcase/{{ user.portrait }}">
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a href="#">EJB</a></li>
-                        <li><a href="#">Jasper Report</a></li>
+                        <li><a>{{ user.nickname }}</a></li>
+                        <li><a>{{ user.positon }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">分离的链接</a></li>
+                        <li><a href="#">个人中心</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">另一个分离的链接</a></li>
+                        <li><a href="/user/logout">退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -102,17 +99,20 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">国内券商</div>
-                <ul class="list-group" id="projectul">
-                    {% for item in project_list %}
+                <div class="panel-heading" id="trader_list_title">{{ trader_type }}</div>
 
-                        <a href="#" class="list-group-item">
-                            <h4 class="list-group-item-heading ">
-                                <img class="img-rounded" style="width:25px;height: 100%;" src="hk_market_icon.png">
+                <ul class="list-group" id="projectul">
+                    {% for item in context.datas %}
+
+                        <a href="#" class="list-group-item" onclick="get_testcase({{ item.code }})"> +
+                            <h4 class="list-group-item-heading">
+                                <img class="img-rounded" style="width:25px;height: 100%;"
+                                     src="{% static item.logo %} ">
                                 {{ item.name }}
                             </h4>
                         </a>
                     {% endfor %}
+
                 </ul>
             </div>
         </div>
@@ -120,9 +120,9 @@
             <div class="row">
                 <div class="col-md-10">
                     <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#home" data-toggle="tab">测试用例</a></li>
-                        <li><a href="#ios" data-toggle="tab">BUG</a></li>
-                        <li><a href="#demo" data-toggle="tab">版本说明书</a></li>
+                        <li class="active"><a href="#test_case" data-toggle="tab">测试用例</a></li>
+                        <li><a href="#bug" data-toggle="tab">BUG</a></li>
+                        <li><a href="#version_info" data-toggle="tab">版本说明书</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -142,18 +142,9 @@
             </div>
 
             <div id="myTabContent" class="tab-content" style="">
-                <div class="tab-pane fade in active" id="home">
-                    <ul class="list-group">
-                        <div class="list-group-item" style="font-size: 16px">
-                            <button type="button" class="btn btn-warning btn-xs">Android</button>
-                            <button type="button" class="btn btn-danger btn-xs">bug:8个</button>
-                            <button type="button" class="btn btn-info btn-xs">2018/11/2</button>
-                            <a href="#">
-                                <span style="font-weight: bold">[ID1009]</span>
-                                交易页面，持仓表格左右滑动查看时，整体页面未固定，会上下晃动,记录只有两条时，左划都无响应。
-                            </a>
+                <div class="tab-pane fade in active" id="test_case">
+                    <ul class="list-group" id="test_case_ul">
 
-                        </div>
                         <div class="list-group-item" style="font-size: 16px">
                             <button type="button" class="btn btn-success btn-xs">iOS</button>
                             <button type="button" class="btn btn-danger btn-xs">bug:12个</button>
@@ -167,7 +158,7 @@
 
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="ios">
+                <div class="tab-pane fade" id="bug">
                     <ul class="list-group">
                         <div class="list-group-item" style="font-size: 16px">
                             <button type="button" class="btn btn-warning btn-xs">Android</button>
@@ -190,7 +181,7 @@
 
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="demo">
+                <div class="tab-pane fade" id="version_info">
                     <ul class="list-group">
                         <a href="hello.html" class="list-group-item">
                             <table class="table table-bordered">
@@ -466,61 +457,97 @@
     </div>
 </footer>
 <script>
+    //进入页面请求全部项目
+    {#click_select_project(0, "所有项目");#}
+    {#get_testcase({{ context.datas[0].code}});#}
 
+    function click_select_project(porject_id, project_name) {
+        $.get('/testcase/trader/' + porject_id, function (data) {
+            datas = data.message;
+            $('#projectul').empty();
+            var html_str = "";
+            for (var i = 0; i < datas.length; i++) {
+                logo = "/static/" + datas[i].logo + ".png";
+                html_str += '<a href="#" class= "list-group-item" onclick="get_testcase(' + datas[i].code + ')">' +
+                    '<h4 class= "list-group-item-heading">' +
+                    '<img class= "img-rounded" style = "width:25px;height: 100%;"src = "' + logo + '">'
+                    + datas[i].name
+                    + '</h4></a>';
+                get_testcase(datas[i].code);
+            }
+            $('#projectul').append(html_str);
+            $('#trader_list_title').html(project_name + '<span class="label label-success" style="margin-left: 50px">' + datas.length + '个</span>');
+        });
+    }
 
-// 字典 dict
-$('#project_all').click(function () {
-    $.get('/testcase/trader/0', function (data) {
-        $('#projectul').empty()
-        project_list = data.message;
-        var str = "";
-        for (var i = 0; i < project_list.length; i++) {
-            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
-                + project_list[i].name + "</h4></a>"
-        }
-        $('#projectul').append(str)
-    });
-});
-$('#project_trader').click(function () {
-    $.get('/testcase/trader/1', function (data) {
-        $('#projectul').empty()
-        project_list = data.message;
-        var str = "";
-        for (var i = 0; i < project_list.length; i++) {
-            logostr = project_list[i].logo + ".png";
-            {#logo = {% static logostr %};#}
-            logo = "/static/"+logostr;
-            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"" + logo + "\" >"
-                + project_list[i].name + "</h4></a>"
-        }
-        $('#projectul').append(str)
-    });
-});
-$('#project_self').click(function () {
-    $.get('/testcase/trader/2', function (data) {
-        $('#projectul').empty()
-        project_list = data.message;
-        var str = "";
-        for (var i = 0; i < project_list.length; i++) {
-            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
-                + project_list[i].name + "</h4></a>"
-        }
-        $('#projectul').append(str)
-    });
-});
-$('#project_option').click(function () {
-    $.get('/testcase/trader/3', function (data) {
-        $('#projectul').empty()
-        project_list = data.message;
-        var str = "";
-        for (var i = 0; i < project_list.length; i++) {
-            str += "<a href = \"#\" class= \"list-group-item\" > <h4 class= \"list-group-item-heading \" > <img class= \"img-rounded\" style = \"width:25px;height: 100%;\" src = \"hk_market_icon.png\" >"
-                + project_list[i].name + "</h4></a>"
-        }
-        $('#projectul').append(str)
-        console.log(data);
-    });
-});
+    function get_testcase(code) {
+        $.get('/testcase/list/' + code, function (data) {
+            datas = data.message;
+            $('#test_case_ul').empty();
+            var html_str = "";
+            for (var i = 0; i < datas.length; i++) {
+                var item = datas[i];
+                html_str =
+                    '<div class="list-group-item" style="font-size: 16px">\n' +
+                    '<button type="button" class="btn btn-warning btn-xs">' + item.phone_system + '</button>\n' +
+                    '<button type="button" class="btn btn-danger btn-xs">bug:' + item.bugnum + '个</button>\n' +
+                    '<button type="button" class="btn btn-info btn-xs">' + item.date + '</button>\n' +
+                    '<button type="button" class="btn btn-info btn-xs">' + item.status + '</button>\n' +
+                    '<a href="#">\n' +
+                    '<span style="font-weight: bold"> [' + item.id + '] </span>\n'
+                    + item.content +
+                    '</a></div>';
+            }
+            $('#test_case_ul').append(html_str);
+
+        });
+    }
+
+    function get_testcase_bug(code) {
+        $.get('/testcase/list/' + code, function (data) {
+            datas = data.message;
+            $('#test_case_ul').empty();
+            var html_str = "";
+            for (var i = 0; i < datas.length; i++) {
+                var item = datas[i];
+                html_str = '  <div class="list-group-item" style="font-size: 16px">\n' +
+                    '<button type="button" class="btn btn-warning btn-xs">Android</button>\n' +
+                    '<button type="button" class="btn btn-info btn-xs">2018/11/2</button>\n' +
+                    '<a href="#">\n' +
+                    '<span style="font-weight: bold">[ID1009]</span>\n' +
+                    '交易页面，持仓表格左右滑动查看时，整体页面未固定，会上下晃动,记录只有两条时，左划都无响应。\n' +
+                    '</a>\n' +
+                    '\n' +
+                    '</div>';
+
+            }
+            $('#test_case_ul').append(html_str);
+
+        });
+    }
+
+    function get_versioninfo(code) {
+        $.get('/testcase/list/' + code, function (data) {
+            datas = data.message;
+            $('#test_case_ul').empty();
+            var html_str = "";
+            for (var i = 0; i < datas.length; i++) {
+                var item = datas[i];
+                html_str =
+                    '<div class="list-group-item" style="font-size: 16px">' +
+                    '<button type="button" class="btn btn-warning btn-xs">' + item.phone_system + '</button>' +
+                    '<button type="button" class="btn btn-danger btn-xs">bug:' + item.bugnum + '个</button>' +
+                    '<button type="button" class="btn btn-info btn-xs">' + item.date + '</button>' +
+                    '<button type="button" class="btn btn-info btn-xs">' + item.status + '</button>' +
+                    '<a href="#">' +
+                    '<span style="font-weight: bold"> [' + item.id + '] </span>'
+                    + item.content +
+                    '</a></div>';
+            }
+            $('#test_case_ul').append(html_str);
+
+        });
+    }
 </script>
 </body>
 </html>

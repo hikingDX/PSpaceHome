@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
-from app.testcase.models import TestCaseDocument, TestCaseFunction, Trader
+from app.testcase.models import TestCaseDocument, TestCaseFunction, Trader, TestCase, TestCaseBug, TestCaseModule
 from utils.mixin import LoginRequiredMixin
 
 
@@ -42,14 +42,24 @@ class IndexView(LoginRequiredMixin, View):
 
 class TraderView(LoginRequiredMixin, View):
     def get(self, request, type):
+        # if type == '0':
+        #     data = Trader.objects.all()
+        # else:
+        #     data = Trader.objects.filter(type=type).all()
+        # json_data = []
+        # for item in data:
+        #     json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        # return JsonResponse({'code': 100, 'message': json_data})
         if type == '0':
             data = Trader.objects.all()
         else:
             data = Trader.objects.filter(type=type).all()
-        json_data = []
+        datas = []
         for item in data:
-            json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
-        return JsonResponse({'code': 100, 'message': json_data})
+            datas.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        context = {'datas': datas}
+        print(context)
+        return render(request, 'index.html', context)
 
 
 class TestCaseTempletView(LoginRequiredMixin, View):
@@ -58,27 +68,27 @@ class TestCaseTempletView(LoginRequiredMixin, View):
 
 class TestCaseListView(LoginRequiredMixin, View):
 
-    def get(self, request):
-        data_list = TestCaseFunction.objects.all()
-        # 对数据进行分页
-        paginator = Paginator(data_list, 10)
-        # 获取第page页的内容
-        try:
-            page = int(10)
-        except Exception as e:
-            page = 1
+    def get(self, request, trade_code):
+        jsondata = []
+        trader = Trader.objects.get(code=trade_code)
+        data_list = TestCase.objects.filter(trader=trader).all()
+        for item in data_list:
+            bugs = TestCaseBug.objects.filter(test_case=item)
+            jsondata.append({
+                'bugnum': len(bugs),
+                'phone_system': item.phone_system,
+                'date': item.create_time,
+                'status': item.result,
+                'id': item.id,
+                'content': item.module.name
+            })
 
-        if page > paginator.num_pages:
-            page = 1
+        return JsonResponse({'code': 100, 'message': jsondata})
 
-        # 获取第page页的Page实例对象
-        test_case_func_page = paginator.page(page)
 
-        print(test_case_func_page)
-        context = {
-            'page': test_case_func_page
-        }
-        return render(request, 'index.html')
+class TestCaseDetailView(LoginRequiredMixin, View):
+    def get(self, request, test_case_id):
+        return render(request, 'testcase_detail.html')
 
 
 class TestCaseView(LoginRequiredMixin, View):
@@ -90,4 +100,5 @@ class TestCaseBugListView(LoginRequiredMixin, View):
 
 
 class TestCaseBugView(LoginRequiredMixin, View):
-    pass
+    def get(self, request, bug_id):
+        return render(request, 'testcase_bug.html')
