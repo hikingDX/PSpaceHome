@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 import json
 
 from app.chat.task import mytask
+from app.testcase.models import TestCase
 
 
 def index(request):
@@ -20,6 +21,9 @@ def room(request, room_name):
 def taskfinish(request):
     if request.method == 'GET':
         mytask()
+        obj = TestCase.objects.get(id=1)
+        obj.result = 1
+        obj.save()
         return JsonResponse({'code': 101, 'message': '无效请求'})
     else:
         token = request.POST.get('token')

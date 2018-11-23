@@ -1,9 +1,12 @@
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
-from app.testcase.models import TestCaseDocument, TestCaseFunction, Trader, TestCase, TestCaseBug, TestCaseModule
+from app.testcase.models import TestCaseDocument, TestCaseFunction, Trader, TestCase, TestCaseBug, TestCaseModule, \
+    TestCaseImage
+from utils.change import ChangeUtils
 from utils.mixin import LoginRequiredMixin
 
 
@@ -37,29 +40,29 @@ class TestCaseTempletListView(LoginRequiredMixin, View):
 
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'testcase/index.html')
 
 
 class TraderView(LoginRequiredMixin, View):
     def get(self, request, type):
-        # if type == '0':
-        #     data = Trader.objects.all()
-        # else:
-        #     data = Trader.objects.filter(type=type).all()
-        # json_data = []
-        # for item in data:
-        #     json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
-        # return JsonResponse({'code': 100, 'message': json_data})
         if type == '0':
             data = Trader.objects.all()
         else:
             data = Trader.objects.filter(type=type).all()
-        datas = []
+        json_data = []
         for item in data:
-            datas.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
-        context = {'datas': datas}
-        print(context)
-        return render(request, 'index.html', context)
+            json_data.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        return JsonResponse({'code': 100, 'message': json_data})
+        # if type == '0':
+        #     data = Trader.objects.all()
+        # else:
+        #     data = Trader.objects.filter(type=type).all()
+        # datas = []
+        # for item in data:
+        #     datas.append({'logo': item.logo, 'code': item.code, 'name': item.name, 'type': item.type})
+        # context = {'datas': datas}
+        # print(context)
+        # return render(request, 'index.html', context)
 
 
 class TestCaseTempletView(LoginRequiredMixin, View):
@@ -76,9 +79,9 @@ class TestCaseListView(LoginRequiredMixin, View):
             bugs = TestCaseBug.objects.filter(test_case=item)
             jsondata.append({
                 'bugnum': len(bugs),
-                'phone_system': item.phone_system,
+                'phone_system': ChangeUtils.get_phontname_by_num(item.phone_system),
                 'date': item.create_time,
-                'status': item.result,
+                'status': ChangeUtils.get_testresult_by_num(item.result),
                 'id': item.id,
                 'content': item.module.name
             })
@@ -88,7 +91,32 @@ class TestCaseListView(LoginRequiredMixin, View):
 
 class TestCaseDetailView(LoginRequiredMixin, View):
     def get(self, request, test_case_id):
-        return render(request, 'testcase_detail.html')
+        # 1.查询用例模板
+        testcase = TestCase.objects.get(id=test_case_id)
+        module = testcase.module
+        bug = TestCaseBug.objects.filter(test_case=testcase)
+        context = {
+            'document': module.doucument.title,
+            'name': module.name,
+            'method': module.method.split('\n'),
+            'func': module.func.content,
+            'expection': module.expection.split('\n'),
+            'phone_system': ChangeUtils.get_phontname_by_num(testcase.phone_system),
+            'date': testcase.create_time,
+            'status': ChangeUtils.get_testresult_by_num(testcase.result),
+            'id': testcase.id,
+            'trader': testcase.trader,
+            'bug': bug,
+        }
+        print(context)
+        return render(request, 'testcase_detail.html', context)
+
+
+class TestCaseSubmitBugView(LoginRequiredMixin, View):
+    def post(self, request):
+        bug = TestCaseBug(test_case_id=request.POST.get('id'), description=request.POST.get('content'), level=1)
+        bug.save()
+        return JsonResponse({'code': 100, 'message': 'ok'})
 
 
 class TestCaseView(LoginRequiredMixin, View):

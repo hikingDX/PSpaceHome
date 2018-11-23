@@ -146,27 +146,28 @@
                 <div class="panel-body">
                     <h4 id="section-1"><img class="img-rounded" style="width: 25px;height: 25px;"
                                             src="/static/hk_market_icon.png">
-                        东方香港
-                        <span class="success">Android</span></h4>
-                    <h3>测试用例名称：暗盘卖出页面展示</h3>
-                    <p>所属文档：<a href="#">《港股暗盘交易》</a></p>
-                    <p>功能模块：<a href="#">暗盘卖出</a></p>
-                    <p>验证状态：验证完成</p>
+                        {{ trader }}
+                        <span class="success">{{ phone_system }}</span></h4>
+                    <h3>测试用例名称：{{ name }}</h3>
+                    <p>所属文档：<a href="#">《{{ document }}》</a></p>
+                    <p>功能模块：<a href="#">{{ func }}</a></p>
+                    <p>验证状态：{{ status }}</p>
                     <p>创建日期：2018年11月19日 by <a href="#">海境</a></p>
                     <hr>
                     <div class="blog-header">
                         <h4 id="section-2"><strong>Part 1:</strong>测试步骤</h4>
                         <blockquote>
-                            <p>1、进入暗盘卖出页面，鼠标移动到各输入框，查看页面显示；</p>
-                            <p>2、鼠标移动到卖出按钮和重置按钮处，查看页面显示；</p>
-                            <p> 3、鼠标移动到买卖五档行情及昨收和现价处，查看页面显示；</p>
+                            {% for item in method %}
+                                <p>{{ item }}</p>
+                            {% endfor %}
+
                         </blockquote>
                         <hr>
                         <h4 id="section-3"><strong>Part 2:</strong>期望结果</h4>
                         <blockquote>
-                            <p>1、进入暗盘卖出页面，鼠标移动到各输入框，查看页面显示；</p>
-                            <p>2、鼠标移动到卖出按钮和重置按钮处，查看页面显示；</p>
-                            <p> 3、鼠标移动到买卖五档行情及昨收和现价处，查看页面显示；</p>
+                            {% for item in expection %}
+                                <p>{{ item }}</p>
+                            {% endfor %}
                         </blockquote>
                         <hr>
                         <h4 id="section-4"><strong>Part 3:</strong>核心测试代码 <a href="#">点击下载</a></h4>
@@ -176,24 +177,21 @@
                         <div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="/static/testresult/login3.png" class="img-rounded"
+                                    <img src="/static/testresult/login.png" class="img-rounded"
                                          style="width: 300px;height: 600px">
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="/static/testresult/login4.png" class="img-rounded"
+                                    <img src="/static/testresult/login1.png" class="img-rounded"
                                          style="width: 300px;height: 600px">
                                 </div>
 
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="/static/testresult/login6.png" class="img-rounded"
+                                    <img src="/static/testresult/login2.png" class="img-rounded"
                                          style="width: 300px;height: 600px">
                                 </div>
-                                <div class="col-md-6">
-                                    <img src="/static/testresult/login3.png" class="img-rounded"
-                                         style="width: 300px;height: 600px">
-                                </div>
+
 
                             </div>
                         </div>
@@ -218,44 +216,44 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <form role="form">
+                                        <form>
                                             <div class="form-group">
                                                 <label for="name">描述一下</label>
-                                                <textarea class="form-control" rows="3"></textarea>
+                                                <textarea class="form-control" rows="3" name="content"
+                                                          id="bugcontent"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">取消
+                                                </button>
+                                                <button id="bugbtn" class="btn btn-primary" onclick="submitBug()"
+                                                        name="csrfmiddlewaretoken" value={{ csrf_token }}>
+                                                    确认提交
+                                                </button>
                                             </div>
                                         </form>
 
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default"
-                                                data-dismiss="modal">取消
-                                        </button>
-                                        <button type="button" class="btn btn-primary">
-                                            确认提交
-                                        </button>
-                                    </div>
+
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
-                        <ul class="list-group">
-                            <div class="list-group-item" style="font-size: 16px">
-                                <a href="#">
-                                    <span style="font-weight: bold">[ID1009]</span>
-                                    交易页面，持仓表格左右滑动查看时，整体页面未固定，会上下晃动,记录只有两条时，左划都无响应。
-                                </a>
+                        <ul class=" list-group
+                                                ">
+                            {% for item in bug %}
+                                <div class="list-group-item" style="font-size: 16px">
+                                    <a href="/testcase/bug/{{ item.id }}">
+                                        {{ item.description }}
+                                    </a>
 
-                            </div>
-                            <div class="list-group-item" style="font-size: 16px">
-                                <a href="#">
-                                    <span style="font-weight: bold">[ID1007]</span>
-                                    登录解锁测试
-                                </a>
+                                </div>
+                            {% endfor %}
 
-                            </div>
                         </ul>
                         <hr>
                         <h4 id="section-7"><strong>讨论区：</strong>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <button class="btn btn-primary" data-toggle="modal"
+                                    data-target="#myModal">
                                 说一句
                             </button>
                         </h4>
@@ -263,14 +261,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -280,14 +280,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -297,14 +299,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -314,14 +318,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -331,14 +337,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -348,14 +356,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -365,14 +375,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -382,14 +394,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -399,14 +413,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -416,14 +432,16 @@
                             <div class="list-group-item" style="font-size: 16px">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="/static/icon1.png" class="img-rounded  center-block"
+                                        <img src="/static/icon1.png"
+                                             class="img-rounded  center-block"
                                              style="width: 40px;height: 40px">
                                     </div>
                                     <div class="col-md-11">
                                         <h4><strong>海境</strong>
                                             <small> 2018年11月19日</small>
                                         </h4>
-                                        <p>这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
+                                        <p>
+                                            这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！
                                             这个用例我觉得写得还不错.python代码也ok！这个用例我觉得写得还不错.python代码也ok！</p>
                                         <button class="btn btn-success">点赞(22)</button>
                                         <button class="btn btn-warning">回复(12)</button>
@@ -459,6 +477,20 @@
     </div>
 </footer>
 <script>
+    function submitBug() {
+        var content = $("#bugcontent").val();
+        var csrf = $("#bugbtn").val();
+        var id ={{ id }};
+        var param = {
+            'id': id,
+            'csrfmiddlewaretoken': csrf,
+            'content': content
+        }
+        $.post('/testcase/submitbug' + {{ id }}, param, function (data) {
+            alert(data.message)
+        });
+
+    }
 </script>
 </body>
 </html>

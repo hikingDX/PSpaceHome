@@ -57,8 +57,8 @@ ROOT_URLCONF = 'PSpaceHome.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'DIRS': ['appfront/dist'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': ['appfront/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,14 +71,14 @@ TEMPLATES = [
     },
 ]
 # Add for vuejs
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "appfront/dist/static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "appfront/dist/static"),
+# ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #使用vue这里要注释掉
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # 使用vue这里要注释掉
 
 WSGI_APPLICATION = 'PSpaceHome.wsgi.application'
 
@@ -137,8 +137,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
 
 # django 认证系统使用的模型类，替换auth_user
 AUTH_USER_MODEL = 'user.User'

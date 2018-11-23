@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('^user/', include('app.user.urls', namespace='user')),
-    re_path('^testcase/', include('app.testcase.urls', namespace='testcase')),
-    re_path(r'^chat/', include('app.chat.urls', namespace='chat')),
+    re_path(r'^$', TemplateView.as_view(template_name="index.html")),
+    # re_path('^user/', include('app.user.urls', namespace='user')),
+    # re_path('^testcase/', include('app.testcase.urls', namespace='testcase')),
+    # re_path(r'^chat/', include('app.chat.urls', namespace='chat')),
 ]
