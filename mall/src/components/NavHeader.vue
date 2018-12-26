@@ -81,12 +81,38 @@
         </div>
       </div>
     </div>
-    <div class="md-overlay" v-if="loginModalFlag" @click="loginModalFlag=false"></div>
+    <div class="md-overlay"></div>
   </header>
 </template>
 <script>
+  import './../assets/css/login.css'
+  import axios from 'axios'
+
   export default {
-    name: 'NavHeader'
+    name: 'NavHeader',
+    data () {
+      return {
+        userName: '',
+        userPwd: '',
+        errorTip: false
+      }
+    },
+    methods: {
+      login () {
+        axios.post('/users/login', {
+          userName: this.userName,
+          userPwd: this.userPwd
+        }).then((response) => {
+          let res = response.data
+          if (res.status === '0') {
+            this.errorTip = false
+          } else {
+            this.errorTip = true
+          }
+        })
+      }
+    }
+
   }
 </script>
 
