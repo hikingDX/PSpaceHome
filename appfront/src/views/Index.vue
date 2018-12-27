@@ -13,15 +13,80 @@
         </ol>
       </div>
     </div>
+    <div class="container">
+      <h5>Step 1:基本信息</h5>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>名称</th>
+          <th>内容</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>提交版本</td>
+          <td>V5.0.0(20181129-1)</td>
+        </tr>
+        <tr>
+          <td>提交日期</td>
+          <td>11/29/18</td>
+        </tr>
+        <tr>
+          <td>打包名称</td>
+          <td>国元iOS_测试V5.0.0(20181129-1).ipa</td>
+        </tr>
+        <tr>
+          <td>环境选择</td>
+          <td>测试环境</td>
+        </tr>
+        <tr>
+          <td>券商代码</td>
+          <td>101</td>
+        </tr>
+        <tr>
+          <td>bundleId(包名)</td>
+          <td>com.qianlong.guoyuan</td>
+        </tr>
+        <tr>
+          <td>项目描述</td>
+          <td>国元iOS</td>
+        </tr>
+        <tr>
+          <td>提交包文件地址</td>
+          <td>http://42.51.11.33:8080/svn/qqbapk/东兴期权宝/test/东兴期权宝Android_测试V5.1.0.34(20181227-1).apk</td>
+        </tr>
+        <tr>
+          <td>版本</td>
+          <td><input type="email" class="form-control" id="email"></td>
+        </tr>
+        <tr>
+          <td>SVNRevison</td>
+          <td><input type="email" class="form-control" id="email"></td>
+        </tr>
+        <tr>
+          <td>认证服务器地址</td>
+          <td><input type="email" class="form-control" id="email"></td>
+        </tr>
+        <tr>
+          <td>修改/升级影响</td>
+          <td><input type="email" class="form-control" id="email"></td>
+        </tr>
+        </tbody>
+      </table>
+      <bug-info-list-view></bug-info-list-view>
+      <hr>
+    </div>
   </div>
 </template>
 
 <script>
   import NavHeader from './../components/NavHeader'
+  import BugInfoListView from '../components/BugInfoListView'
 
   export default {
     name: "Index",
     components: {
+      BugInfoListView,
       NavHeader
     }
   }
