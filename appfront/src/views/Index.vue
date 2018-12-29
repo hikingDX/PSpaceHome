@@ -15,7 +15,7 @@
     </div>
     <div class="container">
       <h5>Step 1:基本信息</h5>
-      <table class="table table-striped">
+      <table class="table table-striped ">
         <thead>
         <tr>
           <th>名称</th>
@@ -25,19 +25,19 @@
         <tbody>
         <tr>
           <td>提交版本</td>
-          <td>V5.0.0(20181129-1)</td>
+          <td v-model="subVersion"></td>
         </tr>
         <tr>
           <td>提交日期</td>
-          <td>11/29/18</td>
+          <td v-model="subDate"></td>
         </tr>
         <tr>
           <td>打包名称</td>
-          <td>国元iOS_测试V5.0.0(20181129-1).ipa</td>
+          <td v-model="subName"></td>
         </tr>
         <tr>
           <td>环境选择</td>
-          <td>测试环境</td>
+          <td v-model="env"></td>
         </tr>
         <tr>
           <td>券商代码</td>
@@ -85,6 +85,15 @@
 
   export default {
     name: "Index",
+    data() {
+      return {
+        subVersion:'V5.0.0(20181129-1)',
+        subDate:'11/29/18',
+        subName:'国元iOS_测试V5.0.0(20181129-1).ipa',
+        env:'测试环境',
+        trader
+      }
+    },
     components: {
       BugInfoListView,
       NavHeader
